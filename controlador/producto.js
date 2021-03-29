@@ -2,16 +2,15 @@
 
 const Producto = require('../models/producto')
 
-function getProductos(){
+function getProductos(req,res){
   Producto.find({},(err,producto)=>{
     if(err)return res.status(500).send({menssage:`error al traer ${err}`})
     if(!producto) res.status(404).send({menssage:`error no existe producto`})
-
-    res.send(200,{producto})
+    res.send(200),({producto})
   })
 }
 
-function getProducto(){
+function getProducto(req,res){
   let productoId = req.params.productoId
 
   Producto.findById(productoId,(err,producto)=> {
@@ -22,7 +21,7 @@ function getProducto(){
   })
 }
 
-function guardarProducto(){
+function guardarProducto(req,res){
   console.log('POST/api/producto')
 
 
@@ -42,7 +41,7 @@ function guardarProducto(){
 
 }
 
-function actualiarProducto(){
+function actualiarProducto(req,res){
   let productoId = req.params.productoId
   let update = req.body
 
@@ -53,7 +52,7 @@ function actualiarProducto(){
   })
 }
 
-function eliminarProducto(){
+function eliminarProducto(req,res){
   let productoId = req.params.productoId
 
   Producto.findById(productoId,(err,producto)=>{
@@ -66,10 +65,14 @@ function eliminarProducto(){
   })
 }
 
+function tester(req,res){
+  console.log('todo bien por aca')
+}
 module.exports = {
   getProducto,
   getProductos,
   guardarProducto,
   actualiarProducto,
-  eliminarProducto
+  eliminarProducto,
+  tester
 }

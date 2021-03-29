@@ -11,7 +11,7 @@ mongoose.connect(config.db , (err,res) => {
   }
   console.log('base de datos funcionando')
 
-  app.listen(config.port, () => {
+  api.listen(config.port, () => {
     console.log(`corriendo en http:${config.port }`)
 
   })
